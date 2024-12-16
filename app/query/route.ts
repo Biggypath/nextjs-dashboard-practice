@@ -1,4 +1,5 @@
-// import { db } from "@vercel/postgres";
+import { db } from "@vercel/postgres";
+import { fetchRevenue, fetchLatestInvoices } from '@/app/lib/data';
 
 // const client = await db.connect();
 
@@ -13,14 +14,16 @@
 // 	return data.rows;
 // }
 
+
+
 export async function GET() {
-  return Response.json({
-    message:
-      'Uncomment this file and remove this line. You can delete this file when you are finished.',
-  });
   // try {
+
   // 	return Response.json(await listInvoices());
   // } catch (error) {
   // 	return Response.json({ error }, { status: 500 });
   // }
+
+  let res = await fetchLatestInvoices();
+  return Response.json(res);
 }
